@@ -1,0 +1,29 @@
+<ion-content class="ion-padding">
+  <h2>Introduction</h2>
+  <p class="description">Not sure what to do today?</p>
+
+  <!-- Hiển thị card cũ nếu showNewCard là false -->
+  <ion-card *ngIf="!showNewCard" class="card">
+    <ion-card-content>
+      <div class="card-item">
+        <img src="./assets/food.png" alt="" class="item-food">
+        <img src="./assets/movie.png" alt="" class="item-movie">
+        <img src="./assets/game.png" alt="" class="item-game">
+      </div>
+    </ion-card-content>
+
+    <div class="btn">
+      <button class="btn-spin" (click)="spinImages()">SPIN</button>
+    </div>
+  </ion-card>
+
+  <p class="note">Spin the wheel!</p>
+
+  <!-- Hiển thị card mới nếu showNewCard là true -->
+  <ion-card *ngIf="showNewCard" class="new-card">
+    <ion-card-content>
+      <h3>New Card</h3>
+      <p>You have selected new items!</p>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

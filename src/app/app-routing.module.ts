@@ -8,9 +8,24 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'started',
     pathMatch: 'full'
   },
+  {
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: 'started',
+    loadChildren: () => import('./started/started.module').then( m => m.StartedPageModule)
+  },
+  {
+    path: 'intro-swipe',
+    loadChildren: () => import('./intro-swipe/intro-swipe.module').then( m => m.IntroSwipePageModule)
+  },
+
+
+
 ];
 
 @NgModule({

@@ -1,2 +1,12 @@
 // For information on how to create your own theme, please see:
 // http://ionicframework.com/docs/theming/
+/* variables.scss */
+
+:root {
+  --ion-background-color: #E6B7AD;
+}
+
+/* Áp dụng biến này cho các phần tử cần thiết */
+body, ion-app, ion-content {
+  background-color: var(--ion-background-color) !important;
+}
