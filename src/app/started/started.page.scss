@@ -90,6 +90,11 @@
   background-color: #D8683F;
   border-radius: 20px;
   margin-top: 40px;
+  transition: transform 0.5s ease-out;
+}
+
+ion-card-content {
+  margin: 50px 0px;
 }
 
 .new-card h3 {
@@ -98,6 +103,7 @@
   text-align: center;
   color: black;
   font-family: 'Courier New', Courier, monospace;
+  margin-top: 10px;
 }
 
 .new-card img {

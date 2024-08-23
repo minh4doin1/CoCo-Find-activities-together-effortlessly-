@@ -1,5 +1,6 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
+import { Gesture, GestureController } from '@ionic/angular';
 
 @Component({
   selector: 'app-started',
@@ -9,10 +10,13 @@ import { Router } from '@angular/router';
 export class StartedPage implements AfterViewInit {
   images!: NodeListOf<HTMLImageElement>;
   imageSources: string[];
-  showNewCard: boolean = false; // Biến để điều khiển hiển thị card mới hoặc card cũ
+  showNewCard: boolean = true; // Biến để điều khiển hiển thị card mới hoặc card cũ
+  showSecondCard: boolean = false;
 
   constructor(
     private router: Router,
+    private gestureCtrl: GestureController, // Add GestureController
+    private renderer: Renderer2
   ) {
     // Mảng hình ảnh cho tất cả các item
     this.imageSources = ['./assets/food.png', './assets/movie.png', './assets/game.png'];
@@ -20,6 +24,38 @@ export class StartedPage implements AfterViewInit {
 
   ngAfterViewInit(): void {
     this.images = document.querySelectorAll('.card-item img');
+    this.initSwipeGesture();
+  }
+
+  initSwipeGesture() {
+    const card = document.querySelector('.new-card') as HTMLElement;
+    const gesture: Gesture = this.gestureCtrl.create({
+      el: card,
+      gestureName: 'swipe',
+      onMove: ev => this.onMove(ev, card),
+      onEnd: ev => this.onEnd(ev, card)
+    });
+    gesture.enable();
+  }
+
+  onMove(ev: any, card: HTMLElement) {
+    this.renderer.setStyle(card, 'transform', `translate(${ev.deltaX}px, ${ev.deltaY}px) rotate(${ev.deltaX / 10}deg)`);
+  }
+
+  onEnd(ev: any, card: HTMLElement) {
+    if (Math.abs(ev.deltaX) > 100) { // If swipe distance is more than 100px
+      const direction = ev.deltaX > 0 ? 'translateX(100vw)' : 'translateX(-100vw)';
+      this.renderer.setStyle(card, 'transition', 'transform 0.5s ease-out');
+      this.renderer.setStyle(card, 'transform', `${direction} rotate(${ev.deltaX / 10}deg)`);
+
+      setTimeout(() => {
+        this.showNewCard = false; // Hide the card after animation
+      }, 500);
+    } else {
+      // Reset position if swipe is not sufficient
+      this.renderer.setStyle(card, 'transition', 'transform 0.5s ease-out');
+      this.renderer.setStyle(card, 'transform', 'translate(0, 0) rotate(0)');
+    }
   }
 
   spinImages() {
