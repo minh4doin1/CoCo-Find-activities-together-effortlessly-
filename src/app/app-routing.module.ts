@@ -19,11 +19,6 @@ const routes: Routes = [
     path: 'started',
     loadChildren: () => import('./started/started.module').then( m => m.StartedPageModule)
   },
-  {
-    path: 'intro-swipe',
-    loadChildren: () => import('./intro-swipe/intro-swipe.module').then( m => m.IntroSwipePageModule)
-  },
-
 
 
 ];

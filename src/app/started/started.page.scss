@@ -85,3 +85,23 @@
   left: 0;
   right: 0;
 }
+
+.new-card {
+  background-color: #D8683F;
+  border-radius: 20px;
+  margin-top: 40px;
+}
+
+.new-card h3 {
+  font-weight: bold;
+  font-size: 24px;
+  text-align: center;
+  color: black;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.new-card img {
+  border-radius: 10px;
+  padding: 5px;
+}
+

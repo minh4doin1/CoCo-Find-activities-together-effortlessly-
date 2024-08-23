@@ -55,8 +55,12 @@ export class StartedPage implements AfterViewInit {
         img.classList.add('selected');
       });
 
-      // Hiển thị card mới và ẩn card cũ sau khi random xong
-      this.showNewCard = true;
+      // Hiển thị card mới và ẩn card cũ sau khi random
+
+      // set
+      setTimeout(() => {
+        this.showNewCard = true;
+      }, 1000)
     }, 2000);
   }
 }
