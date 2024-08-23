@@ -5,11 +5,12 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
-export class LoginPage implements OnInit {
+export class LoginPage{
+  selectedOption: string = '';
 
   constructor() { }
 
-  ngOnInit() {
+  selectOption(option: string) {
+    this.selectedOption = option;
   }
-
 }
